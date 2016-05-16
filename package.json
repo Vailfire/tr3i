@@ -1,0 +1,38 @@
+{
+  "name": "tr3i",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/tr3i.umd.js",
+  "jsnext:main": "dist/tr3i.es6.js",
+  "scripts": {
+    "prebuild": "eslint modules test",
+    "build": "rollup -c config/rollup.config.umd.js && rollup -c config/rollup.config.es6.js",
+    "pretest": "rollup -c config/rollup.config.test.js",
+    "test": "mocha build/test-bundle.js",
+    "prepublish": "npm run build && npm run pretest && npm test"
+  },
+  "author": "Calvin Reibenspieß <calvinreibenspiess@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "mocha": "^2.4.5",
+    "rollup": "^0.26.3",
+    "rollup-plugin-babel": "^2.4.0",
+    "source-map-support": "^0.4.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb",
+    "env": {
+      "node": true,
+      "mocha": true
+    }
+  },
+  "babel": {
+    "presets": [
+      "es2015-rollup"
+    ]
+  }
+}
