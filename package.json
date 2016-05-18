@@ -34,5 +34,8 @@
     "presets": [
       "es2015-rollup"
     ]
+  },
+  "dependencies": {
+    "node-hid": "^0.5.1"
   }
 }
