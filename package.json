@@ -11,7 +11,7 @@
     "test": "mocha build/tests-bundle.js",
     "prepublish": "npm run build && npm test"
   },
-  "author": "Fit-AG - Calvin Reibenspieß <ohg+calvinreibenspiess@gmail.com>",
+  "author": "Fit-AG - Calvin Reibenspieß <calvinreibenspiess+fitAG@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-preset-es2015-rollup": "^1.1.1",
