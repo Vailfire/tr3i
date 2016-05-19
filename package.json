@@ -5,13 +5,13 @@
   "main": "dist/tr3i.umd.js",
   "jsnext:main": "dist/tr3i.es6.js",
   "scripts": {
-    "prebuild": "eslint modules test",
+    "prebuild": "eslint modules tests",
     "build": "rollup -c config/rollup.config.umd.js && rollup -c config/rollup.config.es6.js",
-    "pretest": "rollup -c config/rollup.config.test.js",
-    "test": "mocha build/test-bundle.js",
+    "pretest": "rollup -c config/rollup.config.tests.js",
+    "test": "mocha build/tests-bundle.js",
     "prepublish": "npm run build && npm test"
   },
-  "author": "Calvin Reibenspieß <calvinreibenspiess@gmail.com>",
+  "author": "Fit-AG - Calvin Reibenspieß <ohg+calvinreibenspiess@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-preset-es2015-rollup": "^1.1.1",
