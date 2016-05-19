@@ -2,6 +2,8 @@ import usb from 'usb';
 
 usb.setDebugLevel(4);
 
+console.log(usb.getDeviceList());
+
 const nxt = usb.findByIds(1684, 2);
 
 nxt.open();
@@ -21,17 +23,17 @@ const startMotor = [0x00, 0x04, 0x02, 0x64, 0x07, 0x00, 0x00, 0x20, 0x168, 0x00,
 console.log(startMotor);
 
 outEndpoint.transfer(new Buffer(startMotor), (err) => {
-	console.log(err);
+  console.log(err);
 });
 
 inEndpoint.transfer(3, (err, data) => {
-	console.log('received data', data);
+  console.log('received data', data);
 });
 
 usb.on('attach', (device) => {
-	console.log('attached: ', device);
+  console.log('attached: ', device);
 });
 
 usb.on('detach', (device) => {
-	console.log('detached: ', device);
+  console.log('detached: ', device);
 });
