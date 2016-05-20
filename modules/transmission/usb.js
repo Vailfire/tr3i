@@ -33,15 +33,12 @@ export const detectAttachedBricks = Promise.resolve()
  *  an inEndpoint and an outEndpoint
  */
 export const openConnection = (device) => new Promise((resolve) => {
-  console.info('promising');
+  usb.setDebugLevel(4);
   device.open();
-  console.info('more promising');
   const nxtInterface = device.interfaces[0];
-  console.info('even more promising');
   nxtInterface.claim();
-  console.info('thats it');
   const { endpoints } = nxtInterface;
-  console.info('opening connection ...');
+
   resolve({
     device,
     type: 'usb',

@@ -7,7 +7,7 @@ detectAttachedBricks.then((nxtBricks) => {
   openConnection(nxtBricks[0]).then(({ inEndpoint, outEndpoint }) => {
     console.log(startMotor);
     outEndpoint.transfer(new Buffer(startMotor), (err) => {
-      console.log(err);
+      console.log('executed', err);
     });
     inEndpoint.transfer(3, (err, data) => {
       console.log('received data', data);
