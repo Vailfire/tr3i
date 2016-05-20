@@ -42,7 +42,7 @@ export const openConnection = (device) => new Promise((resolve) => {
   resolve({
     device,
     type: 'usb',
-    outEndpoint: endpoints[1],
-    inEndpoint: endpoints[0],
+    inEndpoint: endpoints[1],
+    outEndpoint: endpoints[0],
   });
 });
