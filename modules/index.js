@@ -9,21 +9,17 @@ const stopMotor = [0x00, 0x04, 0xFF, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0
 detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
   openConnection(nxtBricks[0]).then(({ inEndpoint, outEndpoint }) => {
-    const delayAction = (port, delay) => {
-      setTimeout(() => {
-        outEndpoint.transfer(new Buffer(stopMotor), (err) => {
-          console.log('executed', err);
-        });
-        outEndpoint.transfer(new Buffer(startMotor(port)), (err) => {
-          console.log('executed', err);
-        });
-      }, delay);
-    };
-    delayAction(MOTOR_PORT.ALL, 0);
-    delayAction(MOTOR_PORT.A, 2000);
-    delayAction(MOTOR_PORT.B, 4000);
-    delayAction(MOTOR_PORT.C, 6000);
-    delayAction(MOTOR_PORT.ALL, 8000);
+    outEndpoint.transfer(new Buffer(startMotor(MOTOR_PORT.ALL)), (err) => {
+      console.log('executed', err);
+    });
+    inEndpoint.transfer(3, (err, data) => {
+      console.log('received data', data);
+    });
+  });
+  openConnection(nxtBricks[1]).then(({ inEndpoint, outEndpoint }) => {
+    outEndpoint.transfer(new Buffer(startMotor(MOTOR_PORT.ALL)), (err) => {
+      console.log('executed', err);
+    });
     inEndpoint.transfer(3, (err, data) => {
       console.log('received data', data);
     });
