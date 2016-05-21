@@ -21,8 +21,9 @@ detectAttachedBricks.then((nxtBricks) => {
     };
     delayAction(MOTOR_PORT.ALL, 0);
     delayAction(MOTOR_PORT.A, 2000);
-    delayAction(MOTOR_PORT.B, 2000);
-    delayAction(MOTOR_PORT.C, 2000);
+    delayAction(MOTOR_PORT.B, 4000);
+    delayAction(MOTOR_PORT.C, 6000);
+    delayAction(MOTOR_PORT.ALL, 8000);
     inEndpoint.transfer(3, (err, data) => {
       console.log('received data', data);
     });
