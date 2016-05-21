@@ -1,14 +1,16 @@
 import { detectAttachedBricks, openConnection } from './transmission/usb';
 import { MOTOR_PORT } from './robot/index';
 
-const startMotor = [0x00, 0x04, 0xFF, 0x64, 0x07, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00];
+const startMotor = (port = MOTOR_PORT.ALL) => [0x00, 0x04, port,
+  0x64, 0x07, 0x00, 0x00, 0x20, 0x00, 0x00, 0x00, 0x00];
+
 const stopMotor = [0x00, 0x04, 0xFF, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
 detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
   openConnection(nxtBricks[0]).then(({ inEndpoint, outEndpoint }) => {
-    console.log(startMotor.splice(2, 2, MOTOR_PORT.B));
-    outEndpoint.transfer(new Buffer(startMotor.splice(2, 2, MOTOR_PORT.B)), (err) => {
+    console.log(startMotor);
+    outEndpoint.transfer(new Buffer(startMotor(MOTOR_PORT.B)), (err) => {
       console.log('executed', err);
     });
     inEndpoint.transfer(3, (err, data) => {
@@ -18,7 +20,7 @@ detectAttachedBricks.then((nxtBricks) => {
       outEndpoint.transfer(new Buffer(stopMotor), (err) => {
         console.log('executed', err);
       });
-      outEndpoint.transfer(new Buffer(startMotor.splice(2, 2, MOTOR_PORT.C)), (err) => {
+      outEndpoint.transfer(new Buffer(startMotor(MOTOR_PORT.C)), (err) => {
         console.log('executed', err);
       });
     }, 1400);
