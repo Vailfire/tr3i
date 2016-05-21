@@ -8,7 +8,7 @@ detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
   openConnection(nxtBricks[0]).then(({ inEndpoint, outEndpoint }) => {
     console.log(startMotor);
-    outEndpoint.transfer(new Buffer(startMotor.splice(1, 1, MOTOR_PORT.B)), (err) => {
+    outEndpoint.transfer(new Buffer(startMotor.splice(2, 2, MOTOR_PORT.B)), (err) => {
       console.log('executed', err);
     });
     inEndpoint.transfer(3, (err, data) => {
@@ -18,7 +18,7 @@ detectAttachedBricks.then((nxtBricks) => {
       outEndpoint.transfer(new Buffer(stopMotor), (err) => {
         console.log('executed', err);
       });
-      outEndpoint.transfer(new Buffer(startMotor.splice(1, 1, MOTOR_PORT.C)), (err) => {
+      outEndpoint.transfer(new Buffer(startMotor.splice(2, 2, MOTOR_PORT.C)), (err) => {
         console.log('executed', err);
       });
     }, 1400);
