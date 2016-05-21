@@ -5,34 +5,37 @@
   "main": "dist/tr3i.umd.js",
   "jsnext:main": "dist/tr3i.es6.js",
   "scripts": {
-    "prebuild": "eslint modules tests",
+    "prebuild": "eslint modules",
     "build": "rollup -c config/rollup.config.umd.js && rollup -c config/rollup.config.es6.js",
     "pretest": "rollup -c config/rollup.config.tests.js",
-    "test": "mocha build/tests-bundle.js",
+    "test:unit": "ava build/tests-bundle.js --match='*- unit' ",
+    "test:integration": "ava build/tests-bundle.js --match='*- integration' ",
+    "test": "ava build/tests-bundle.js",
     "prepublish": "npm run build && npm test"
   },
   "author": "Fit-AG - Calvin Reibenspieß <calvinreibenspiess+fitAG@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.14.0",
+    "babel-preset-es2015": "^6.9.0",
     "babel-preset-es2015-rollup": "^1.1.1",
-    "chai": "^3.5.0",
+    "babel-register": "^6.9.0",
     "eslint": "^2.10.2",
     "eslint-config-airbnb-base": "^3.0.1",
     "eslint-plugin-import": "^1.8.0",
-    "mocha": "^2.4.5",
     "rollup": "^0.26.3",
     "rollup-plugin-babel": "^2.4.0",
     "rollup-plugin-multi-entry": "^1.2.0",
-    "source-map-support": "^0.4.0"
+    "source-map-support": "^0.4.0",
+    "tap-diff": "^0.1.1"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
     "env": {
-      "node": true,
-      "mocha": true
+      "node": true
     }
   },
-  "babel": {
+  "baabel": {
     "presets": [
       "es2015-rollup"
     ]
