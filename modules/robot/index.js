@@ -1,0 +1,6 @@
+export const MOTOR_PORT = {
+  A: 0x00,
+  B: 0x01,
+  C: 0x02,
+  ALL: 0xFF,
+};
