@@ -13,7 +13,7 @@ const testDevices = [{
     bcdUSB: 512,
     bDeviceClass: 0,
     bDeviceSubClass: 0,
-    bDeviceProtocol: 0,
+    bDeviceWWProtocol: 0,
     bMaxPacketSize0: 8,
     idVendor: 1684,
     idProduct: 2,
