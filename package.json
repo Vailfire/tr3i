@@ -9,7 +9,8 @@
     "build": "rollup -c config/rollup.config.umd.js && rollup -c config/rollup.config.es6.js",
     "pretest": "rollup -c config/rollup.config.tests.js",
     "test": "mocha build/tests-bundle.js",
-    "prepublish": "npm run build && npm test"
+    "prepublish": "npm run build && npm test",
+    "up": "git add -A && git commit -m \"small experiments\" && git push -u origin master"
   },
   "author": "Fit-AG - Calvin Reibenspieß <calvinreibenspiess+fitAG@gmail.com>",
   "license": "MIT",

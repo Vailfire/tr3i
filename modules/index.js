@@ -13,8 +13,10 @@ detectAttachedBricks.then((nxtBricks) => {
     inEndpoint.transfer(3, (err, data) => {
       console.log('received data', data);
     });
-    outEndpoint.transfer(new Buffer(stopMotor), (err) => {
-      console.log('executed', err);
-    });
+    setTimeout(() => {
+      outEndpoint.transfer(new Buffer(stopMotor), (err) => {
+        console.log('executed', err);
+      });
+    }, 5000);
   });
 });
