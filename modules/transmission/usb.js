@@ -26,6 +26,15 @@ export const detectAttachedBricks = Promise.resolve()
   .then(detectAttachedDevices)
   .then(filterNXTBricksfromDevices);
 
+export const getEndpoints = (device) => {
+  const endpoints = device.interfaces[0].endpoints;
+
+  return ({
+    inEndpoint: endpoints[1],
+    outEndpoint: endpoints[0],
+  });
+};
+
 /**
  * Open connection to a NXT brick and provide I/O endpoints
  * @param  {Device} device valid NXT brick
@@ -37,12 +46,11 @@ export const openConnection = (device) => new Promise((resolve) => {
   device.open();
   const nxtInterface = device.interfaces[0];
   nxtInterface.claim();
-  const { endpoints } = nxtInterface;
-
+  const { inEndpoint, outEndpoint } = getEndpoints(device);
   resolve({
     device,
     type: 'usb',
-    inEndpoint: endpoints[1],
-    outEndpoint: endpoints[0],
+    inEndpoint,
+    outEndpoint,
   });
 });
