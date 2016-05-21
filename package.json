@@ -10,7 +10,8 @@
     "pretest": "rollup -c config/rollup.config.tests.js",
     "test": "mocha build/tests-bundle.js",
     "prepublish": "npm run build && npm test",
-    "up": "git add -A && git commit -m \"small experiments\" && git push -u origin master"
+    "up": "git add -A && git commit -m \"small experiments\" && git push -u origin master",
+    "down": "git pull && npm run build && node dist/tr3i.umd.js"
   },
   "author": "Fit-AG - Calvin Reibenspieß <calvinreibenspiess+fitAG@gmail.com>",
   "license": "MIT",
