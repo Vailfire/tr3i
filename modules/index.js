@@ -1,4 +1,5 @@
 import { detectAttachedBricks, openConnection } from './transmission/usb';
+import { transfer } from './transmission/transmit';
 import { MOTOR_PORT } from './robot/index';
 
 const startMotor = (port = MOTOR_PORT.ALL) => [0x00, 0x04, port,
@@ -8,10 +9,8 @@ const startMotor = (port = MOTOR_PORT.ALL) => [0x00, 0x04, port,
 
 detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
-  openConnection(nxtBricks[0]).then(({ inEndpoint, outEndpoint }) => {
-    outEndpoint.transfer(new Buffer(startMotor(MOTOR_PORT.ALL)), (err) => {
-      console.log('executed', err);
-    });
+  openConnection(nxtBricks[0]).then(({ device, inEndpoint }) => {
+    transfer(device, startMotor(MOTOR_PORT.ALL));
     inEndpoint.transfer(3, (err, data) => {
       console.log('received data', data);
     });
