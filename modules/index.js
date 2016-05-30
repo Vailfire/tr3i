@@ -11,18 +11,16 @@ detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
   openConnection(nxtBricks[0]).then(({ device, inEndpoint }) => {
     sendCommand(device, startMotor(MOTOR_PORT.ALL)).then(() => {
-      console.log('!!!');
       inEndpoint.transfer(3, (err, data) => {
         console.log('received data', data);
       });
     });
   });
-  // openConnection(nxtBricks[1]).then(({ inEndpoint, outEndpoint }) => {
-  //   outEndpoint.transfer(new Buffer(startMotor(MOTOR_PORT.ALL)), (err) => {
-  //     console.log('executed', err);
-  //   });
-  //   inEndpoint.transfer(3, (err, data) => {
-  //     console.log('received data', data);
-  //   });
-  // });
+  openConnection(nxtBricks[1]).then(({ device, inEndpoint }) => {
+    sendCommand(device, startMotor(MOTOR_PORT.ALL)).then(() => {
+      inEndpoint.transfer(3, (err, data) => {
+        console.log('received data', data);
+      });
+    });
+  });
 });
