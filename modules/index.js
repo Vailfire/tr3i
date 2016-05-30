@@ -11,6 +11,7 @@ detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
   openConnection(nxtBricks[0]).then(({ device, inEndpoint }) => {
     sendCommand(device, startMotor(MOTOR_PORT.ALL)).then(() => {
+      console.log('!!!');
       inEndpoint.transfer(3, (err, data) => {
         console.log('received data', data);
       });
