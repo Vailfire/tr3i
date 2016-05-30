@@ -10,9 +10,10 @@ const startMotor = (port = MOTOR_PORT.ALL) => [0x00, 0x04, port,
 detectAttachedBricks.then((nxtBricks) => {
   console.log(nxtBricks);
   openConnection(nxtBricks[0]).then(({ device, inEndpoint }) => {
-    sendCommand(device, startMotor(MOTOR_PORT.ALL));
-    inEndpoint.transfer(3, (err, data) => {
-      console.log('received data', data);
+    sendCommand(device, startMotor(MOTOR_PORT.ALL)).then(() => {
+      inEndpoint.transfer(3, (err, data) => {
+        console.log('received data', data);
+      });
     });
   });
   // openConnection(nxtBricks[1]).then(({ inEndpoint, outEndpoint }) => {
